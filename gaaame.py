@@ -3,15 +3,16 @@ import random
 pygame.init()
 
 WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 
 WIDTH, HEIGHT = 800, 600
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Убегай от врагов")
 
-player_size = 50
+player_size = 80
 player_pos = [WIDTH // 2, HEIGHT - 2 * player_size]
+player_image = pygame.image.load("png_кик борд.png")
+player_image = pygame.transform.scale(player_image,(player_size, player_size))
 
 enemy_size = 50
 enemy_pos = [random.randint(0, WIDTH - enemy_size), 0]
@@ -72,7 +73,7 @@ def main():
         if collision_check(enemy_list, player_pos):
             game_over()
 
-        pygame.draw.rect(screen, BLACK, (player_pos[0], player_pos[1], player_size, player_size))
+        screen.blit(player_image,(player_pos[0], player_pos[1]))
 
         pygame.display.update()
         clock.tick(30)
